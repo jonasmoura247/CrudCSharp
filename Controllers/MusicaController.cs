@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
+using CrudCSharp.Properties.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace crudCSharp.Controllers
@@ -10,11 +11,27 @@ namespace crudCSharp.Controllers
     [Route("api/[controller]")]
     public class MusicaController : ControllerBase
     {
+        private static List<Musica> Musica(){
+            return new List<Musica>{
+                new Musica{Nome = "ACDC", Id = 1}
+            };
+
+        }
+
         [HttpGet]
 
-        public string Get ()
+        public IActionResult Get ()
         {
-            return "ok"; 
+            return Ok(Musica()); 
+
+
+            
+
+
+
+
+
+
         }
     }
 }
