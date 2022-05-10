@@ -11,27 +11,28 @@ namespace crudCSharp.Controllers
     [Route("api/[controller]")]
     public class MusicaController : ControllerBase
     {
-        private static List<Musica> Musica(){
+        private static List<Musica> Musicas()
+        {
             return new List<Musica>{
-                new Musica{Nome = "ACDC", Id = 1}
+                new Musica{Nome = "ACDC", Id = 1, Lancamento = new DateTime(1980,06,25) }
             };
-
         }
 
         [HttpGet]
-
-        public IActionResult Get ()
+        public IActionResult Get()
         {
-            return Ok(Musica()); 
+            return Ok(Musicas());
+        }
 
+        [HttpPost]
 
-            
+        public IActionResult Post(Musica musica)
+        {
+            var musicas = Musicas();
+            musicas.Add(musica);
 
-
-
-
-
-
+            return Ok(musicas);
         }
     }
 }
+

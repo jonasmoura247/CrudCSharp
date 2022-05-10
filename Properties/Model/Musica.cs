@@ -6,7 +6,7 @@ namespace CrudCSharp.Properties.Model
 
         public string Nome { get; set; }
 
-        public string Album { get; set; }
+        public DateTime Lancamento { get; set; }
         
     }
 }

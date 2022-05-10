@@ -25,3 +25,11 @@ C:\Users\Jonas\Desktop\Estudos\Crud C#\CrudCSharp\obj\Debug\net6.0\CrudCSharp.dl
 C:\Users\Jonas\Desktop\Estudos\Crud C#\CrudCSharp\obj\Debug\net6.0\ref\CrudCSharp.dll
 C:\Users\Jonas\Desktop\Estudos\Crud C#\CrudCSharp\obj\Debug\net6.0\CrudCSharp.pdb
 C:\Users\Jonas\Desktop\Estudos\Crud C#\CrudCSharp\obj\Debug\net6.0\CrudCSharp.genruntimeconfig.cache
+C:\Users\Jonas\Desktop\Estudos\Crud C#\CrudCSharp\bin\Debug\net6.0\Humanizer.dll
+C:\Users\Jonas\Desktop\Estudos\Crud C#\CrudCSharp\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Jonas\Desktop\Estudos\Crud C#\CrudCSharp\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Jonas\Desktop\Estudos\Crud C#\CrudCSharp\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Jonas\Desktop\Estudos\Crud C#\CrudCSharp\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Jonas\Desktop\Estudos\Crud C#\CrudCSharp\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Jonas\Desktop\Estudos\Crud C#\CrudCSharp\bin\Debug\net6.0\Npgsql.dll
+C:\Users\Jonas\Desktop\Estudos\Crud C#\CrudCSharp\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
