@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CrudCSharp.Properties.Model;
+using CrudCSharp.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace crudCSharp.Controllers
@@ -11,27 +12,73 @@ namespace crudCSharp.Controllers
     [Route("api/[controller]")]
     public class MusicaController : ControllerBase
     {
-        private static List<Musica> Musicas()
+        private readonly IMusicaRepository repository;
+
+        public MusicaController(IMusicaRepository repository)
         {
-            return new List<Musica>{
-                new Musica{Nome = "ACDC", Id = 1, Lancamento = new DateTime(1980,06,25) }
-            };
+            this.repository = repository;
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return Ok(Musicas());
+            var musicas = await repository.BuscaMusicas();
+            return musicas.Any()
+            ? Ok(musicas)
+            : NoContent();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var musica = await repository.BuscaMusica(id);
+            return musica != null
+            ? Ok(musica)
+            : NotFound("não foi possivel encontrar ");
         }
 
         [HttpPost]
 
-        public IActionResult Post(Musica musica)
+        public async Task<IActionResult> Post(Musica musica)
         {
-            var musicas = Musicas();
-            musicas.Add(musica);
+            this.repository.AdicionarMusica(musica);
+            return await this.repository.SaveChangesAsync()
+                 ? Ok("Musica Adicionada com sucesso")
+                 : BadRequest("Não foi possivel salvar");
+        }
 
-            return Ok(musicas);
+        [HttpPut("{id}")]
+
+        public async Task<IActionResult> Put(int id, Musica musica)
+        {
+            var musicaBanco = await repository.BuscaMusica(id);
+            if (musicaBanco == null) return NotFound("Musica Não econtrada");
+
+            musicaBanco.Nome = musica.Nome ?? musicaBanco.Nome;
+            musicaBanco.Lancamento = musica.Lancamento != new DateTime()
+                ? musica.Lancamento : musicaBanco.Lancamento;
+
+            repository.AtualizaMusica(musicaBanco);
+
+            this.repository.AdicionarMusica(musica);
+
+            return await this.repository.SaveChangesAsync()
+                 ? Ok("Musica atualizada com sucesso")
+                 : BadRequest("Não foi possivel atualizar");
+        }
+
+        [HttpDelete("{id}")]
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var musicaBanco = await repository.BuscaMusica(id);
+            if (musicaBanco == null) return NotFound("Musica não encontrada");
+
+            repository.DeletaMusica(musicaBanco);
+
+            return await this.repository.SaveChangesAsync()
+                 ? Ok("Musica deletada com sucesso")
+                 : BadRequest("Não foi possivel Deletar");
         }
     }
 }

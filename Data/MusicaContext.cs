@@ -13,10 +13,19 @@ namespace CrudCSharp.Data
         public MusicaContext(DbContextOptions<MusicaContext> options) : base(options)
         {
         }
-        public DbSet<Musica> Musicas {get; set;} 
+        public DbSet<Musica> Musicas { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+           var musica = modelBuilder.Entity<Musica>();
+            musica.ToTable("tb_musica");
+            musica.HasKey(x => x.Id);
+            musica.Property(x => x.Id).HasColumnName("id").ValueGeneratedOnAdd();
+            musica.Property(x => x.Nome).HasColumnName("nome").IsRequired();
+            musica.Property(x => x.Lancamento).HasColumnName("data_lancamento").IsRequired();
+
+        }
     }
-        
-
-
 
 }

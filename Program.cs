@@ -1,4 +1,5 @@
 using CrudCSharp.Data;
+using CrudCSharp.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,8 @@ IServiceCollection serviceCollection = builder.Services.AddDbContext<MusicaConte
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
 });
+
+builder.Services.AddScoped<IMusicaRepository, MusicaRepository>();
 
 
 var app = builder.Build();
